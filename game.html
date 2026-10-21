@@ -1,0 +1,1615 @@
+html_content = """<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Dunia Pintar Ceria — Game & Worksheet Edukatif Anak (4–5 Tahun)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@600;700;800&display=swap');
+
+  :root {
+    --primary: #FF595E;
+    --primary-dark: #D63B40;
+    --secondary: #1982C4;
+    --secondary-dark: #105E91;
+    --accent: #FFCA3A;
+    --accent-dark: #DBA514;
+    --success: #8AC926;
+    --success-dark: #689E13;
+    --purple: #6A4C93;
+    --purple-dark: #4D3470;
+    --bg-top: #E0F7FA;
+    --bg-bottom: #FFFDE7;
+    --card-bg: #FFFFFF;
+    --text-main: #2B2D42;
+    --text-muted: #5C6378;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: 'Nunito', 'Comic Sans MS', sans-serif;
+    background: linear-gradient(160deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-title {
+    font-family: 'Fredoka', 'Comic Sans MS', sans-serif;
+    letter-spacing: 0.5px;
+  }
+
+  /* HEADER & TOP NAVIGATION */
+  .top-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    border-bottom: 5px solid var(--accent);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .brand-logo:hover { transform: scale(1.03); }
+
+  .top-badges {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .badge-pill {
+    background: #FFF8E1;
+    border: 3px solid var(--accent);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 3px 0 var(--accent-dark);
+  }
+
+  .btn-icon-top {
+    background: var(--secondary);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 4px 0 var(--secondary-dark);
+    transition: all 0.15s;
+  }
+  .btn-icon-top:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 var(--secondary-dark);
+  }
+
+  /* MAIN LAYOUT */
+  .main-wrapper {
+    max-width: 1040px;
+    width: 100%;
+    margin: 18px auto;
+    padding: 0 16px 40px;
+    flex: 1;
+  }
+
+  /* COMMAND CONSOLE BAR */
+  .cmd-console {
+    background: white;
+    border-radius: 20px;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    border: 3px solid #E2E8F0;
+  }
+  .cmd-console input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    font-family: monospace;
+    color: var(--text-main);
+    background: transparent;
+  }
+  .cmd-console button {
+    background: var(--purple);
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 0 var(--purple-dark);
+  }
+  .cmd-console button:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 var(--purple-dark);
+  }
+
+  /* CARDS */
+  .panel-card {
+    background: var(--card-bg);
+    border-radius: 30px;
+    padding: 24px;
+    margin-bottom: 22px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    border: 4px solid #FFFFFF;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* HERO BANNER & PROFILE SELECTOR */
+  .hero-banner {
+    background: linear-gradient(135deg, #FF9F1C 0%, #FFBF69 100%);
+    color: white;
+    border-radius: 26px;
+    padding: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 22px;
+    box-shadow: 0 8px 20px rgba(255, 159, 28, 0.3);
+  }
+  .hero-mascot {
+    font-size: 4rem;
+    background: rgba(255,255,255,0.25);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: bounceSlow 3s infinite ease-in-out;
+  }
+  @keyframes bounceSlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* AGE & THEME PILLS */
+  .selector-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 12px;
+  }
+  .chip-btn {
+    background: #F8FAFC;
+    border: 3px solid #CBD5E1;
+    border-radius: 18px;
+    padding: 10px 16px;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-main);
+  }
+  .chip-btn.active {
+    background: #E0F2FE;
+    border-color: var(--secondary);
+    color: var(--secondary-dark);
+    transform: scale(1.04);
+    box-shadow: 0 4px 0 var(--secondary);
+  }
+
+  /* MENU GRID */
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+    gap: 16px;
+    margin-top: 18px;
+  }
+  .game-tile {
+    background: white;
+    border: 4px solid #E2E8F0;
+    border-radius: 24px;
+    padding: 18px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 7px 0 #CBD5E1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .game-tile:hover {
+    transform: translateY(-4px);
+    border-color: var(--secondary);
+    box-shadow: 0 10px 0 var(--secondary);
+  }
+  .game-tile:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 var(--secondary);
+  }
+  .game-tile .tile-icon {
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .game-tile .tile-title {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+  .game-tile .tile-sub {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+
+  /* WORKSHEET GAME STAGE */
+  .ws-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #F1F5F9;
+    padding: 12px 18px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .progress-outer {
+    width: 100%;
+    height: 18px;
+    background: #E2E8F0;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 2px solid #CBD5E1;
+  }
+  .progress-inner {
+    height: 100%;
+    background: linear-gradient(90deg, #8AC926, #1982C4);
+    border-radius: 50px;
+    transition: width 0.35s ease;
+  }
+
+  .instruction-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 10px 0 18px;
+  }
+  .instruction-text {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.85rem;
+    color: var(--text-main);
+    text-align: center;
+  }
+  .btn-speak {
+    background: var(--accent);
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 0 var(--accent-dark);
+    flex-shrink: 0;
+  }
+  .btn-speak:active { transform: translateY(3px); box-shadow: none; }
+
+  .visual-canvas {
+    background: #F8FAFC;
+    border: 4px dashed #94A3B8;
+    border-radius: 28px;
+    padding: 28px 18px;
+    min-height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 24px;
+    font-size: 3.8rem;
+  }
+
+  .choices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+  }
+  .choice-btn {
+    background: #FFFBEB;
+    border: 4px solid #FBBF24;
+    border-radius: 24px;
+    padding: 20px 14px;
+    font-size: 2.3rem;
+    font-weight: 800;
+    color: var(--text-main);
+    cursor: pointer;
+    box-shadow: 0 7px 0 #D97706;
+    transition: all 0.15s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .choice-btn:hover {
+    background: #FEF3C7;
+    transform: translateY(-3px);
+  }
+  .choice-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #D97706;
+  }
+  .choice-label {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #475569;
+  }
+
+  /* MEMORY CARD GRID */
+  .memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    max-width: 560px;
+    margin: 0 auto 20px;
+  }
+  .mem-card {
+    aspect-ratio: 1;
+    background: var(--secondary);
+    border: 4px solid var(--secondary-dark);
+    border-radius: 22px;
+    font-size: 2.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 6px 0 var(--secondary-dark);
+    color: white;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .mem-card.flipped, .mem-card.matched {
+    background: #FFFFFF;
+    color: var(--text-main);
+    border-color: var(--success);
+    box-shadow: 0 6px 0 var(--success-dark);
+  }
+
+  /* FEEDBACK ALERT */
+  .feedback-toast {
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 20px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    text-align: center;
+    display: none;
+    animation: popIn 0.25s ease;
+  }
+  @keyframes popIn {
+    0% { transform: scale(0.85); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  /* PARENT PROGRESS BARS */
+  .skill-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .skill-name {
+    width: 145px;
+    font-weight: 800;
+    font-size: 1rem;
+    text-align: left;
+  }
+  .skill-bar-bg {
+    flex: 1;
+    height: 24px;
+    background: #E2E8F0;
+    border-radius: 50px;
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1982C4, #8AC926);
+    color: white;
+    font-weight: 800;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    border-radius: 50px;
+  }
+
+  /* PRINT WORKSHEET A4 STYLING */
+  .print-container {
+    background: white;
+    border: 3px solid #1E293B;
+    border-radius: 16px;
+    padding: 28px;
+    text-align: left;
+  }
+  .print-header-box {
+    border-bottom: 3px solid #1E293B;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .print-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    border: 2px solid #334155;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 22px;
+    font-weight: 700;
+  }
+  .print-question-row {
+    border-bottom: 2px dashed #94A3B8;
+    padding: 16px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    page-break-inside: avoid;
+  }
+  .print-choice-box {
+    border: 2px solid #1E293B;
+    border-radius: 12px;
+    padding: 8px 14px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 8px;
+  }
+
+  @media print {
+    .no-print, .top-header, .cmd-console { display: none !important; }
+    body { background: white !important; }
+    .main-wrapper { margin: 0; padding: 0; max-width: 100%; }
+    .panel-card { box-shadow: none !important; border: none !important; padding: 0 !important; }
+    .print-container { border: 2px solid #000 !important; }
+  }
+
+  @media (max-width: 600px) {
+    .instruction-text { font-size: 1.4rem; }
+    .visual-canvas { font-size: 2.8rem; padding: 18px 12px; }
+    .choice-btn { font-size: 1.8rem; padding: 14px 10px; }
+    .memory-grid { grid-template-columns: repeat(3, 1fr); }
+    .print-meta-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP NAVIGATION HEADER -->
+<header class="top-header no-print">
+  <div class="brand-logo" onclick="navigateHome()">
+    <span>🌈</span>
+    <span>Dunia Pintar Ceria</span>
+  </div>
+  <div class="top-badges">
+    <div class="badge-pill" id="badgeAge">👶 4 Tahun</div>
+    <div class="badge-pill" id="badgeLevel">🚀 Level 1 (Tingkat A)</div>
+    <div class="badge-pill" id="badgeStars">⭐ 0</div>
+    <button class="btn-icon-top" id="btnSoundToggle" onclick="toggleAudio()">🔊 Suara: ON</button>
+    <button class="btn-icon-top" style="background:var(--primary); box-shadow: 0 4px 0 var(--primary-dark);" onclick="navigateHome()">🏠 Menu</button>
+  </div>
+</header>
+
+<div class="main-wrapper">
+  <!-- COMMAND BAR -->
+  <div class="cmd-console no-print">
+    <span>⌨️</span>
+    <input type="text" id="cmdInputBox" placeholder="Ketik command (contoh: /worksheet usia=4 level=1 tema=buah kategori=warna soal=10 atau /tes)" onkeydown="if(event.key==='Enter') executeCommand()" />
+    <button onclick="executeCommand()">Jalankan</button>
+  </div>
+
+  <!-- DYNAMIC VIEWPORT -->
+  <div id="appViewport"></div>
+</div>
+
+<script>
+/* ============================================================================
+   1. AUDIO & VOICE SYNTHESIS ENGINE (WEB AUDIO API + SPEECH SYNTHESIS)
+============================================================================ */
+let audioEnabled = true;
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+
+function initAudio() {
+  if (!audioCtx && AudioCtx) audioCtx = new AudioCtx();
+}
+
+function playSound(type) {
+  if (!audioEnabled) return;
+  try {
+    initAudio();
+    if (!audioCtx) return;
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    if (type === 'correct') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(523.25, now); // C5
+      osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+      osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+      gain.gain.setValueAtTime(0.25, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+      osc.start(now);
+      osc.stop(now + 0.45);
+    } else if (type === 'tryagain') {
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(320, now);
+      osc.frequency.setValueAtTime(260, now + 0.15);
+      gain.gain.setValueAtTime(0.2, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+      osc.start(now);
+      osc.stop(now + 0.35);
+    } else if (type === 'fanfare') {
+      [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.connect(g);
+        g.connect(audioCtx.destination);
+        o.frequency.value = freq;
+        g.gain.setValueAtTime(0.2, now + idx * 0.12);
+        g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.12 + 0.35);
+        o.start(now + idx * 0.12);
+        o.stop(now + idx * 0.12 + 0.35);
+      });
+    }
+  } catch (e) {}
+}
+
+function speakText(text) {
+  if (!audioEnabled || !('speechSynthesis' in window)) return;
+  try {
+    window.speechSynthesis.cancel();
+    const cleanText = text.replace(/[^\w\s\d,.?!+-]/gi, ' ');
+    const utter = new SpeechSynthesisUtterance(cleanText);
+    utter.lang = 'id-ID';
+    utter.rate = 0.92;
+    utter.pitch = 1.15;
+    window.speechSynthesis.speak(utter);
+  } catch (e) {}
+}
+
+function toggleAudio() {
+  audioEnabled = !audioEnabled;
+  document.getElementById('btnSoundToggle').innerText = audioEnabled ? '🔊 Suara: ON' : '🔇 Suara: OFF';
+  if (!audioEnabled && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+}
+
+/* ============================================================================
+   2. APPLICATION STATE & STORAGE (LOCALSTORAGE PERSISTENCE)
+============================================================================ */
+const defaultState = {
+  childName: "Bintang Kecil",
+  age: 4,
+  level: 1, // 1 = Pemula (4th), 2 = Menengah (4.5th), 3 = Lanjut (5th)
+  difficultyCode: "A", // A, B, C, D, E
+  diagnosticLabel: "LEVEL PEMULA",
+  selectedTheme: "buah",
+  stars: 0,
+  gamesCompleted: 0,
+  questionsAnswered: 0,
+  correctCount: 0,
+  wrongCount: 0,
+  unlockedBadges: ["🌟 Anak Hebat Pertama"],
+  categoryMastery: {
+    warna: 80,
+    bentuk: 75,
+    angka: 70,
+    hitung: 65,
+    huruf: 70,
+    pola: 68,
+    urutkan: 72,
+    perbedaan: 75,
+    cocokkan: 78,
+    memory: 82,
+    logika: 70
+  }
+};
+
+let appState = Object.assign({}, defaultState);
+try {
+  const saved = localStorage.getItem('dunia_pintar_ceria_v1');
+  if (saved) appState = Object.assign({}, defaultState, JSON.parse(saved));
+} catch (e) {}
+
+function saveState() {
+  try {
+    localStorage.setItem('dunia_pintar_ceria_v1', JSON.stringify(appState));
+  } catch (e) {}
+  refreshHeaderUI();
+}
+
+function refreshHeaderUI() {
+  document.getElementById('badgeAge').innerText = `👶 Usia: ${appState.age} Thn`;
+  document.getElementById('badgeLevel').innerText = `🚀 Level ${appState.level} (Tingkat ${appState.difficultyCode})`;
+  document.getElementById('badgeStars').innerText = `⭐ ${appState.stars}`;
+}
+
+/* ============================================================================
+   3. THEMES & EDUCATIONAL CONTENT DATABASES (13 TEMA DUNIA ANAK)
+============================================================================ */
+const THEMES_DB = {
+  kebunbinatang: { title: "🌳 Kebun Binatang", mascot: "🦁", icons: ["🦁","🐘","🦒","🦓","🐒","🦛","🐅"] },
+  buah:          { title: "🍎 Buah-buahan", mascot: "🍎", icons: ["🍎","🍌","🍇","🍉","🍓","🍊","🍍"] },
+  kendaraan:     { title: "🚗 Kendaraan", mascot: "🚗", icons: ["🚗","🚌","🚓","🚑","🚒","🚜","🚂"] },
+  luarangkasa:   { title: "🚀 Luar Angkasa", mascot: "🚀", icons: ["🚀","🛸","🌟","🌙","🪐","☄️","👨‍🚀"] },
+  laut:          { title: "🌊 Dunia Laut", mascot: "🐬", icons: ["🐟","🐠","🐬","🐳","🐙","🦀","🐢"] },
+  pelangi:       { title: "🌈 Dunia Pelangi", mascot: "🌈", icons: ["🌈","☀️","☁️","⭐","🎈","🎀","🦋"] },
+  rumah:         { title: "🏡 Rumah Ceria", mascot: "🏡", icons: ["🛋️","🛏️","🪑","🚪","🧸","⏰","🖼️"] },
+  alam:          { title: "🌳 Alam Indah", mascot: "🌻", icons: ["🌻","🌷","🌳","🍄","🍀","🦋","🐝"] },
+  hewan:         { title: "🐱 Hewan Lucu", mascot: "🐱", icons: ["🐶","🐱","🐰","🐼","🐨","🐸","🐹"] },
+  mainan:        { title: "🧸 Mainan Seru", mascot: "🧸", icons: ["🧸","🪀","🪁","⚽","🎨","🧩","🥁"] },
+  permen:        { title: "🍭 Dunia Permen", mascot: "🍭", icons: ["🍭","🍬","🍩","🧁","🍦","🍪","🍫"] },
+  dinosaurus:    { title: "🦖 Dinosaurus", mascot: "🦖", icons: ["🦖","🦕","🥚","🌋","🌴","🦴","🐊"] },
+  robot:         { title: "🤖 Robot Pintar", mascot: "🤖", icons: ["🤖","⚙️","🔋","💡","🛸","📡","🕹️"] }
+};
+
+const COLOR_DB = [
+  { name: "MERAH", item: "🍎", label: "Apel Merah", distractors: [{i:"🍌",l:"Pisang Kuning"},{i:"🥦",l:"Brokoli Hijau"},{i:"🍇",l:"Anggur Ungu"}] },
+  { name: "KUNING", item: "🍌", label: "Pisang Kuning", distractors: [{i:"🍎",l:"Apel Merah"},{i:"🥦",l:"Brokoli Hijau"},{i:"🫐",l:"Beri Biru"}] },
+  { name: "HIJAU", item: "🥦", label: "Brokoli Hijau", distractors: [{i:"🍓",l:"Stroberi Merah"},{i:"🍋",l:"Lemon Kuning"},{i:"🍊",l:"Jeruk Oranye"}] },
+  { name: "ORANYE", item: "🥕", label: "Wortel Oranye", distractors: [{i:"🍆",l:"Terong Ungu"},{i:"🥒",l:"Timun Hijau"},{i:"🍌",l:"Pisang Kuning"}] },
+  { name: "UNGU", item: "🍇", label: "Anggur Ungu", distractors: [{i:"🍎",l:"Apel Merah"},{i:"🍋",l:"Lemon Kuning"},{i:"🥦",l:"Brokoli Hijau"}] },
+  { name: "BIRU", item: "🐳", label: "Paus Biru", distractors: [{i:"🐸",l:"Katak Hijau"},{i:"🐥",l:"Anak Ayam Kuning"},{i:"🦀",l:"Kepiting Merah"}] }
+];
+
+const SHAPE_DB = [
+  { name: "LINGKARAN", icon: "🔴", label: "Lingkaran", real: "🍩 Donat Bulat", wrong: [{i:"🟦",l:"Persegi"},{i:"🔺",l:"Segitiga"},{i:"⭐",l:"Bintang"}] },
+  { name: "PERSEGI (KOTAK)", icon: "🟦", label: "Persegi", real: "🖼️ Bingkai Kotak", wrong: [{i:"🔴",l:"Lingkaran"},{i:"🔺",l:"Segitiga"},{i:"💜",l:"Hati"}] },
+  { name: "SEGITIGA", icon: "🔺", label: "Segitiga", real: "🍕 Potongan Pizza", wrong: [{i:"🔴",l:"Lingkaran"},{i:"🟦",l:"Persegi"},{i:"⭐",l:"Bintang"}] },
+  { name: "BINTANG", icon: "⭐", label: "Bintang", real: "🌟 Bintang Langit", wrong: [{i:"🔴",l:"Lingkaran"},{i:"🟦",l:"Persegi"},{i:"🔺",l:"Segitiga"}] },
+  { name: "OVAL (LONJONG)", icon: "🥚", label: "Oval", real: "🥚 Telur Lonjong", wrong: [{i:"🟦",l:"Persegi"},{i:"🔺",l:"Segitiga"},{i:"⭐",l:"Bintang"}] }
+];
+
+const LETTER_DB = [
+  { letter: "A", word: "APEL", icon: "🍎", wrong: ["B","K","S"] },
+  { letter: "B", word: "BOLA", icon: "⚽", wrong: ["A","M","T"] },
+  { letter: "I", word: "IKAN", icon: "🐟", wrong: ["U","E","O"] },
+  { letter: "K", word: "KUCING", icon: "🐱", wrong: ["G","P","R"] },
+  { letter: "M", word: "MOBIL", icon: "🚗", wrong: ["N","B","L"] },
+  { letter: "P", word: "PISANG", icon: "🍌", wrong: ["B","D","S"] },
+  { letter: "R", word: "ROKET", icon: "🚀", wrong: ["L","K","T"] },
+  { letter: "S", word: "SAPI", icon: "🐮", wrong: ["C","Z","M"] }
+];
+
+const PAIRS_DB = [
+  { q: "Pasangkan hewan dengan makanan kesukaannya! Kelinci makan apa?", visual: "🐰 ❤️ ❓", ans: {i:"🥕",l:"Wortel"}, wrong: [{i:"🦴",l:"Tulang"},{i:"🐟",l:"Ikan"},{i:"🍌",l:"Pisang"}] },
+  { q: "Monyet paling suka makan buah apa?", visual: "🐒 ❤️ ❓", ans: {i:"🍌",l:"Pisang"}, wrong: [{i:"🥕",l:"Wortel"},{i:"🦴",l:"Tulang"},{i:"🌶️",l:"Cabai"}] },
+  { q: "Kucing kecil suka makan apa?", visual: "🐱 ❤️ ❓", ans: {i:"🐟",l:"Ikan"}, wrong: [{i:"🥕",l:"Wortel"},{i:"🍌",l:"Pisang"},{i:"🥬",l:"Sayur"}] },
+  { q: "Saat turun hujan deras, kita memakai apa?", visual: "🌧️ 👉 ❓", ans: {i:"☂️",l:"Payung"}, wrong: [{i:"🕶️",l:"Kacamata Hitam"},{i:"🪁",l:"Layang-layang"},{i:"🍦",l:"Es Krim"}] },
+  { q: "Pasangkan induk ayam dengan anaknya!", visual: "🐔 👉 ❓", ans: {i:"🐥",l:"Anak Ayam"}, wrong: [{i:"🐶",l:"Anak Anjing"},{i:"🐸",l:"Katak"},{i:"🐱",l:"Anak Kucing"}] },
+  { q: "Untuk menulis dan menggambar di buku kita memakai...", visual: "📖 👉 ❓", ans: {i:"✏️",l:"Pensil"}, wrong: [{i:"🥄",l:"Sendok"},{i:"🧹",l:"Sapu"},{i:"⚽",l:"Bola"}] }
+];
+
+/* ============================================================================
+   4. DYNAMIC QUESTION GENERATOR (MENYESUAIKAN LEVEL 1, 2, 3 & TEMA)
+============================================================================ */
+function shuffle(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+function generateDynamicQuestion(category, level, themeKey) {
+  const themeObj = THEMES_DB[themeKey] || THEMES_DB.buah;
+  const icons = themeObj.icons;
+  const mainIcon = icons[Math.floor(Math.random() * icons.length)];
+  const choiceLimit = level === 1 ? 3 : 4;
+
+  // A. WARNA
+  if (category === 'warna') {
+    const item = COLOR_DB[Math.floor(Math.random() * COLOR_DB.length)];
+    const wrongs = shuffle(item.distractors).slice(0, choiceLimit - 1);
+    const options = shuffle([{ icon: item.item, label: item.label, val: item.item }, ...wrongs.map(w => ({ icon: w.i, label: w.l, val: w.i }))]);
+    return {
+      catLabel: "🎨 Mengenal Warna",
+      prompt: `Mana yang warnanya ${item.name}?`,
+      visualHtml: `<div style="font-size:1.8rem; font-weight:800; color:var(--primary);">🎨 Cari warna: ${item.name}</div>`,
+      answer: item.item,
+      options
+    };
+  }
+
+  // B. BENTUK
+  if (category === 'bentuk') {
+    const sh = SHAPE_DB[Math.floor(Math.random() * SHAPE_DB.length)];
+    const wrongs = shuffle(sh.wrong).slice(0, choiceLimit - 1);
+    const options = shuffle([{ icon: sh.icon, label: sh.label, val: sh.icon }, ...wrongs.map(w => ({ icon: w.i, label: w.l, val: w.i }))]);
+    return {
+      catLabel: "🔷 Mengenal Bentuk",
+      prompt: `Pilih bentuk ${sh.name}!`,
+      visualHtml: `<div style="font-size:2rem; font-weight:800;">Contoh benda: ${sh.real}</div>`,
+      answer: sh.icon,
+      options
+    };
+  }
+
+  // C. ANGKA (MENGHITUNG OBJEK)
+  if (category === 'angka') {
+    const maxNum = level === 1 ? 5 : (level === 2 ? 10 : 16);
+    const minNum = level === 1 ? 1 : (level === 2 ? 3 : 6);
+    const count = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+    const wrongSet = new Set();
+    while (wrongSet.size < choiceLimit - 1) {
+      let candidate = count + (Math.floor(Math.random() * 5) - 2);
+      if (candidate >= 1 && candidate !== count) wrongSet.add(candidate);
+      else wrongSet.add(count + wrongSet.size + 1);
+    }
+    const options = shuffle([count, ...Array.from(wrongSet)]).map(n => ({ icon: String(n), label: `Angka ${n}`, val: String(n) }));
+    return {
+      catLabel: "🔢 Mengenal Angka",
+      prompt: `Ada berapa gambar di dalam kotak ini?`,
+      visualHtml: Array(count).fill(`<span>${mainIcon}</span>`).join(" "),
+      answer: String(count),
+      options
+    };
+  }
+
+  // D. BERHITUNG (PENJUMLAHAN / PENGURANGAN GAMBAR)
+  if (category === 'hitung') {
+    const isSub = level === 3 && Math.random() > 0.5;
+    if (!isSub) {
+      const a = Math.floor(Math.random() * (level === 1 ? 2 : (level === 2 ? 4 : 6))) + 1;
+      const b = Math.floor(Math.random() * (level === 1 ? 2 : 4)) + 1;
+      const total = a + b;
+      const options = shuffle([total, total + 1, Math.max(1, total - 1), total + 2].filter((v,i,s)=>s.indexOf(v)===i).slice(0, choiceLimit))
+        .map(n => ({ icon: String(n), label: `${n} Benda`, val: String(n) }));
+      return {
+        catLabel: "➕ Pintar Berhitung",
+        prompt: `Ada ${a}, ditambah ${b} lagi. Berapa jumlah semuanya?`,
+        visualHtml: `<span>${Array(a).fill(mainIcon).join("")}</span> <span style="font-size:2.5rem; font-weight:900;">➕</span> <span>${Array(b).fill(mainIcon).join("")}</span> <span style="font-size:2.5rem; font-weight:900;">= ❓</span>`,
+        answer: String(total),
+        options
+      };
+    } else {
+      const a = Math.floor(Math.random() * 5) + 4;
+      const b = Math.floor(Math.random() * 3) + 1;
+      const rem = a - b;
+      const options = shuffle([rem, rem + 1, Math.max(1, rem - 1), rem + 2].filter((v,i,s)=>s.indexOf(v)===i).slice(0, choiceLimit))
+        .map(n => ({ icon: String(n), label: `Sisa ${n}`, val: String(n) }));
+      return {
+        catLabel: "➖ Pintar Berhitung",
+        prompt: `Ada ${a}, diambil ${b}. Berapa sisanya sekarang?`,
+        visualHtml: `<span>${Array(a).fill(mainIcon).join("")}</span> <span style="font-size:2.5rem; font-weight:900;">➖ ${b} = ❓</span>`,
+        answer: String(rem),
+        options
+      };
+    }
+  }
+
+  // E. HURUF & KATA SEDERHANA
+  if (category === 'huruf') {
+    const item = LETTER_DB[Math.floor(Math.random() * LETTER_DB.length)];
+    if (level < 3) {
+      const opts = shuffle([item.letter, ...item.wrong.slice(0, choiceLimit - 1)]).map(l => ({ icon: l, label: `Huruf ${l}`, val: l }));
+      return {
+        catLabel: "🔤 Mengenal Huruf",
+        prompt: `"${item.word}" dimulai dengan huruf apa?`,
+        visualHtml: `<span>${item.icon}</span> <span style="font-size:2.4rem; font-weight:900; letter-spacing:4px;">_${item.word.slice(1)}</span>`,
+        answer: item.letter,
+        options: opts
+      };
+    } else {
+      const spelled = item.word.split("").join("-");
+      const wrongWords = shuffle(LETTER_DB.filter(x => x.word !== item.word)).slice(0, choiceLimit - 1);
+      const opts = shuffle([
+        { icon: item.icon, label: item.word, val: item.word },
+        ...wrongWords.map(w => ({ icon: w.icon, label: w.word, val: w.word }))
+      ]);
+      return {
+        catLabel: "🔤 Menyusun Kata",
+        prompt: `Susun huruf ${spelled} menjadi kata yang benar!`,
+        visualHtml: `<span style="font-size:2.8rem; font-weight:900; color:var(--purple);">${spelled}</span>`,
+        answer: item.word,
+        options: opts
+      };
+    }
+  }
+
+  // F. POLA
+  if (category === 'pola') {
+    const [i1, i2, i3] = shuffle(icons);
+    if (level === 1) {
+      return {
+        catLabel: "🔄 Melanjutkan Pola",
+        prompt: "Gambar apa yang melanjutkan pola ini?",
+        visualHtml: `<span>${i1}</span><span>${i2}</span><span>${i1}</span><span>${i2}</span><span>❓</span>`,
+        answer: i1,
+        options: shuffle([i1, i2, i3]).map(x => ({ icon: x, label: "Pilih ini", val: x }))
+      };
+    } else {
+      return {
+        catLabel: "🔄 Melanjutkan Pola",
+        prompt: "Perhatikan urutannya! Gambar apa setelah ini?",
+        visualHtml: `<span>${i1}</span><span>${i1}</span><span>${i2}</span><span>${i1}</span><span>${i1}</span><span>❓</span>`,
+        answer: i2,
+        options: shuffle([i1, i2, i3]).map(x => ({ icon: x, label: "Pilih ini", val: x }))
+      };
+    }
+  }
+
+  // G. MENGURUTKAN & UKURAN (BESAR/KECIL, BANYAK/SEDIKIT)
+  if (category === 'urutkan') {
+    const mode = Math.random() > 0.5 ? 'size' : 'amount';
+    if (mode === 'size') {
+      const askBiggest = Math.random() > 0.5;
+      return {
+        catLabel: "📏 Ukuran & Urutan",
+        prompt: askBiggest ? "Mana gambar yang ukurannya PALING BESAR?" : "Mana gambar yang ukurannya PALING KECIL?",
+        visualHtml: `
+          <span style="font-size:2rem;">A. ${mainIcon}</span>
+          <span style="font-size:3.4rem;">B. ${mainIcon}</span>
+          <span style="font-size:5rem;">C. ${mainIcon}</span>
+        `,
+        answer: askBiggest ? "C" : "A",
+        options: [
+          { icon: "A", label: "Kecil", val: "A" },
+          { icon: "B", label: "Sedang", val: "B" },
+          { icon: "C", label: "Besar", val: "C" }
+        ]
+      };
+    } else {
+      return {
+        catLabel: "📏 Banyak & Sedikit",
+        prompt: "Kotak mana yang isinya PALING BANYAK?",
+        visualHtml: `<div style="font-size:1.5rem; font-weight:800;">Bandingkan jumlah gambar pada pilihan di bawah!</div>`,
+        answer: "5",
+        options: shuffle([
+          { icon: mainIcon, label: "1 Benda", val: "1" },
+          { icon: `${mainIcon}${mainIcon}`, label: "2 Benda", val: "2" },
+          { icon: `${mainIcon}${mainIcon}${mainIcon}${mainIcon}${mainIcon}`, label: "5 Benda", val: "5" }
+        ])
+      };
+    }
+  }
+
+  // H. MENCARI PERBEDAAN
+  if (category === 'perbedaan') {
+    const [same, diff, extra] = shuffle(icons);
+    const row = shuffle([same, same, same, diff]);
+    return {
+      catLabel: "🔍 Mencari Perbedaan",
+      prompt: "Temukan 1 gambar yang BERBEDA sendiri!",
+      visualHtml: row.map(x => `<span>${x}</span>`).join(" "),
+      answer: diff,
+      options: shuffle([same, diff, extra]).map(x => ({ icon: x, label: "Gambar ini", val: x }))
+    };
+  }
+
+  // I. PASANGKAN & LOGIKA SEDERHANA
+  const p = PAIRS_DB[Math.floor(Math.random() * PAIRS_DB.length)];
+  const opts = shuffle([
+    { icon: p.ans.i, label: p.ans.l, val: p.ans.i },
+    ...shuffle(p.wrong).slice(0, choiceLimit - 1).map(w => ({ icon: w.i, label: w.l, val: w.i }))
+  ]);
+  return {
+    catLabel: "🧩 Logika & Pasangan",
+    prompt: p.q,
+    visualHtml: `<span>${p.visual}</span>`,
+    answer: p.ans.i,
+    options: opts
+  };
+}
+
+/* ============================================================================
+   5. NAVIGATION & HOME DASHBOARD
+============================================================================ */
+let activeSession = null;
+
+function navigateHome() {
+  refreshHeaderUI();
+  const themeKeys = Object.keys(THEMES_DB);
+  const currentTheme = THEMES_DB[appState.selectedTheme] || THEMES_DB.buah;
+
+  document.getElementById('appViewport').innerHTML = `
+    <!-- HERO WELCOME BANNER -->
+    <div class="hero-banner">
+      <div>
+        <div style="font-size:1rem; font-weight:800; opacity:0.95;">🌟 SISTEM PEMBELAJARAN ANAK USIA 4–5 TAHUN</div>
+        <h1 style="font-size:2rem; margin:4px 0;">Halo, ${appState.childName}! Yuk Bermain!</h1>
+        <p style="font-weight:700;">Status Kemampuan: <strong>${appState.diagnosticLabel}</strong> | Tema Aktif: <strong>${currentTheme.title}</strong></p>
+      </div>
+      <div class="hero-mascot">${currentTheme.mascot}</div>
+    </div>
+
+    <!-- STEP 1: AGE & THEME SELECTOR -->
+    <div class="panel-card">
+      <h2 style="text-align:center; font-size:1.35rem;">1️⃣ Pilih Usia Anak & Tema Dunia Permainan</h2>
+      <div class="selector-group">
+        <button class="chip-btn ${appState.age===4?'active':''}" onclick="selectChildAge(4)">👶 4 Tahun (Level 1 Pemula)</button>
+        <button class="chip-btn ${appState.age===4.5?'active':''}" onclick="selectChildAge(4.5)">🧒 4,5 Tahun (Level 2 Menengah)</button>
+        <button class="chip-btn ${appState.age===5?'active':''}" onclick="selectChildAge(5)">👦 5 Tahun (Level 3 Lanjut)</button>
+      </div>
+      <hr style="margin:16px 0; border:none; border-top:2px dashed #E2E8F0;" />
+      <div class="selector-group">
+        ${themeKeys.map(k => `
+          <button class="chip-btn ${appState.selectedTheme===k?'active':''}" style="padding:7px 13px; font-size:0.9rem;" onclick="selectTheme('${k}')">
+            ${THEMES_DB[k].title}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+
+    <!-- STEP 2: MAIN MENU CATEGORIES -->
+    <div class="panel-card">
+      <h2 style="text-align:center; font-size:1.4rem;">2️⃣ Pilih Kategori Permainan & Aktivitas</h2>
+      <div class="category-grid">
+        <div class="game-tile" style="border-color:#FF595E; background:#FFF5F5;" onclick="launchQuizSession('tes', 10)">
+          <div class="tile-icon">📋</div>
+          <div class="tile-title">TES AWAL</div>
+          <div class="tile-sub">Ukur Level Anak</div>
+        </div>
+        <div class="game-tile" onclick="launchQuizSession('campuran', 10)">
+          <div class="tile-icon">🎮</div>
+          <div class="tile-title">MULAI BERMAIN</div>
+          <div class="tile-sub">Petualangan Seru</div>
+        </div>
+        <div class="game-tile" onclick="launchQuizSession('warna', 8)">
+          <div class="tile-icon">🎨</div>
+          <div class="tile-title">WARNA</div>
+          <div class="tile-sub">Kenali Warna</div>
+        </div>
+        <div class="game-tile" onclick="launchQuizSession('bentuk', 8)">
+          <div class="tile-icon">🔷</div>
+          <div class="tile-title">BENTUK</div>
+          <div class="tile-sub">Kotak & Bulat</div>
+        </div>
+        <div class="game-tile" onclick="launchQuizSession('angka', 8)">
+          <div class="tile-icon">🔢</div>
+          <div class="tile-title">ANGKA</div>
+          <div class="tile-sub">Hitung Benda</div>
+        </div>
+        <div class="game-tile" onclick="launchQuizSession('hitung', 8)">
+          <div class="tile-icon">➕</div>
+          <div class="tile-title">BERHITUNG</div>
+          <div class="tile-sub">Tambah & Kurang</div>
+        </div>
+        <div class="game-tile" onclick="launchQuizSession('huruf', 8)">
+          <div class="tile-icon">🔤</div>
+          <div class="tile-title">HURUF</div>
+          <div class="tile-sub">Baca & Kata</div>
+        </div>
+        <div class="game-tile" onclick="launchQuizSession('pola', 8)">
+          <div class="tile-icon">🔄</div>
+          <div class="tile-title">POLA</div>
+          <div class="tile-sub">Urutan Gambar</div>
+        </div>
+        <div class="game-tile" onclick="launchQuizSession('urutkan', 8)">
+          <div class="tile-icon">📏</div>
+          <div class="tile-title">MENGURUTKAN</div>
+          <div class="tile-sub">Besar & Kecil</div>
+        </div>
+        <div class="game-tile" onclick="launchQuizSession('perbedaan', 8)">
+          <div class="tile-icon">🔍</div>
+          <div class="tile-title">PERBEDAAN</div>
+          <div class="tile-sub">Teliti Visual</div>
+        </div>
+        <div class="game-tile" onclick="launchQuizSession('cocokkan', 8)">
+          <div class="tile-icon">🧩</div>
+          <div class="tile-title">PASANGKAN</div>
+          <div class="tile-sub">Logika Anak</div>
+        </div>
+        <div class="game-tile" onclick="launchMemoryGame()">
+          <div class="tile-icon">🃏</div>
+          <div class="tile-title">MEMORY GAME</div>
+          <div class="tile-sub">Latih Ingatan</div>
+        </div>
+        <div class="game-tile" style="border-color:#1982C4; background:#F0F9FF;" onclick="openPrintableWorksheet('campuran', 10)">
+          <div class="tile-icon">📚</div>
+          <div class="tile-title">WORKSHEET CETAK</div>
+          <div class="tile-sub">Siap Print A4</div>
+        </div>
+        <div class="game-tile" onclick="openRewardsView()">
+          <div class="tile-icon">🏆</div>
+          <div class="tile-title">PRESTASI</div>
+          <div class="tile-sub">Koleksi Badge</div>
+        </div>
+        <div class="game-tile" onclick="openParentDashboard()">
+          <div class="tile-icon">👨‍👩‍👧</div>
+          <div class="tile-title">ORANG TUA</div>
+          <div class="tile-sub">Laporan & Grafik</div>
+        </div>
+        <div class="game-tile" onclick="openSettingsView()">
+          <div class="tile-icon">⚙️</div>
+          <div class="tile-title">PENGATURAN</div>
+          <div class="tile-sub">Ubah Profil</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function selectChildAge(ageVal) {
+  appState.age = ageVal;
+  appState.level = ageVal === 4 ? 1 : (ageVal === 4.5 ? 2 : 3);
+  appState.difficultyCode = ageVal === 4 ? "A" : (ageVal === 4.5 ? "C" : "D");
+  saveState();
+  navigateHome();
+}
+
+function selectTheme(themeKey) {
+  appState.selectedTheme = themeKey;
+  saveState();
+  navigateHome();
+}
+
+/* ============================================================================
+   6. INTERACTIVE WORKSHEET QUIZ ENGINE
+============================================================================ */
+function launchQuizSession(category, questionCount = 8) {
+  const pool = ['warna','bentuk','angka','hitung','huruf','pola','urutkan','perbedaan','cocokkan'];
+  const questions = Array.from({ length: questionCount }, (_, idx) => {
+    const cat = (category === 'tes' || category === 'campuran') ? pool[idx % pool.length] : category;
+    return { cat, ...generateDynamicQuestion(cat, appState.level, appState.selectedTheme) };
+  });
+
+  activeSession = {
+    mode: category,
+    total: questionCount,
+    currentIndex: 0,
+    score: 0,
+    firstTryCorrect: 0,
+    attemptsWrong: 0,
+    questions
+  };
+  renderCurrentQuestion();
+}
+
+function renderCurrentQuestion() {
+  const s = activeSession;
+  if (s.currentIndex >= s.total) {
+    finishQuizSession();
+    return;
+  }
+  const q = s.questions[s.currentIndex];
+  const progressPct = Math.round((s.currentIndex / s.total) * 100);
+  const currentTheme = THEMES_DB[appState.selectedTheme] || THEMES_DB.buah;
+
+  document.getElementById('appViewport').innerHTML = `
+    <div class="panel-card">
+      <div class="ws-topbar">
+        <div><strong>${q.catLabel}</strong> • ${currentTheme.title}</div>
+        <div>Level ${appState.level} (Tingkat ${appState.difficultyCode}) | ⭐ Skor: <strong>${s.score}</strong></div>
+      </div>
+
+      <div class="progress-outer">
+        <div class="progress-inner" style="width:${progressPct}%"></div>
+      </div>
+
+      <div class="instruction-box">
+        <button class="btn-speak" onclick="speakText('${q.prompt.replace(/'/g, "")}')" title="Dengarkan Instruksi">🔊</button>
+        <div class="instruction-text">${q.prompt}</div>
+      </div>
+
+      <div class="visual-canvas">${q.visualHtml}</div>
+
+      <div class="choices-grid">
+        ${q.options.map(opt => `
+          <button class="choice-btn" onclick="checkQuizAnswer('${opt.val.replace(/'/g, "\\'")}')">
+            <span>${opt.icon}</span>
+            <span class="choice-label">${opt.label}</span>
+          </button>
+        `).join('')}
+      </div>
+
+      <div id="feedbackBanner" class="feedback-toast"></div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:22px; color:var(--text-muted); font-weight:800;">
+        <div>Soal ${s.currentIndex + 1} dari ${s.total}</div>
+        <button class="chip-btn" style="padding:6px 14px; font-size:0.85rem;" onclick="openPrintableWorksheet('${s.mode}', ${s.total})">🖨️ Cetak Soal Ini</button>
+      </div>
+    </div>
+  `;
+
+  speakText(q.prompt);
+}
+
+let questionHadMistake = false;
+
+function checkQuizAnswer(selectedVal) {
+  const s = activeSession;
+  const q = s.questions[s.currentIndex];
+  const banner = document.getElementById('feedbackBanner');
+  banner.style.display = 'block';
+
+  if (selectedVal === q.answer) {
+    playSound('correct');
+    s.score += 10;
+    appState.stars += 1;
+    appState.correctCount += 1;
+    if (!questionHadMistake) s.firstTryCorrect += 1;
+    questionHadMistake = false;
+
+    const praises = [
+      "Hebat! Jawabanmu Benar! 🎉",
+      "Bagus sekali, kamu pintar! 🌟",
+      "Wah, luar biasa tepat! 🚀",
+      "Pintar sekali! Yuk lanjut! 👏"
+    ];
+    const msg = praises[Math.floor(Math.random() * praises.length)];
+    banner.style.background = "#DCFCE7";
+    banner.style.color = "#166534";
+    banner.style.border = "3px solid #86EFAC";
+    banner.innerText = msg;
+    speakText("Hebat! Benar!");
+    saveState();
+
+    setTimeout(() => {
+      s.currentIndex += 1;
+      renderCurrentQuestion();
+    }, 1000);
+  } else {
+    playSound('tryagain');
+    questionHadMistake = true;
+    s.attemptsWrong += 1;
+    appState.wrongCount += 1;
+
+    const encouragements = [
+      "Coba lagi ya, kamu pasti bisa! 😊",
+      "Hampir benar! Ayo pilih sekali lagi! 💪",
+      "Belum tepat, yuk perhatikan gambarnya lagi! 🌈"
+    ];
+    const msg = encouragements[Math.floor(Math.random() * encouragements.length)];
+    banner.style.background = "#FEF9C3";
+    banner.style.color = "#854D0E";
+    banner.style.border = "3px solid #FDE047";
+    banner.innerText = msg;
+    speakText("Ayo coba sekali lagi");
+  }
+}
+
+/* ============================================================================
+   7. ADAPTIVE LEVELING & DIAGNOSTIC EVALUATION
+============================================================================ */
+function finishQuizSession() {
+  playSound('fanfare');
+  const s = activeSession;
+  appState.gamesCompleted += 1;
+  appState.questionsAnswered += s.total;
+
+  const accuracy = Math.round((s.firstTryCorrect / s.total) * 100);
+
+  // Update Category Mastery
+  if (appState.categoryMastery[s.mode] !== undefined) {
+    appState.categoryMastery[s.mode] = Math.min(100, Math.round((appState.categoryMastery[s.mode] + accuracy) / 2));
+  } else {
+    Object.keys(appState.categoryMastery).forEach(k => {
+      appState.categoryMastery[k] = Math.min(100, Math.round((appState.categoryMastery[k] + accuracy) / 2));
+    });
+  }
+
+  // Adaptive Difficulty Logic (80-100%, 60-79%, 40-59%, <40%)
+  let starsDisplay = "⭐⭐⭐";
+  let starText = "Sangat Baik!";
+  let adaptiveNotice = "";
+  const diffLadder = ["A", "B", "C", "D", "E"];
+  let currDiffIdx = diffLadder.indexOf(appState.difficultyCode);
+
+  if (accuracy >= 80) {
+    starsDisplay = "⭐⭐⭐";
+    starText = "Sangat Baik!";
+    if (currDiffIdx < 4) currDiffIdx++;
+    if (appState.level < 3 && currDiffIdx >= 2) appState.level++;
+    appState.diagnosticLabel = "LEVEL SIAP MENANTANG";
+    adaptiveNotice = `🚀 Performa ${accuracy}% (80–100%): Hebat! Tingkat kesulitan naik ke Level ${appState.level} (Tingkat ${diffLadder[currDiffIdx]}).`;
+  } else if (accuracy >= 60) {
+    starsDisplay = "⭐⭐";
+    starText = "Baik!";
+    appState.diagnosticLabel = "LEVEL BERKEMBANG";
+    adaptiveNotice = `🌈 Performa ${accuracy}% (60–79%): Bagus! Tetap di Level ${appState.level} dengan variasi permainan baru.`;
+  } else if (accuracy >= 40) {
+    starsDisplay = "⭐";
+    starText = "Mulai Berkembang";
+    if (currDiffIdx > 0) currDiffIdx--;
+    appState.diagnosticLabel = "LEVEL BERKEMBANG";
+    adaptiveNotice = `🌱 Performa ${accuracy}% (40–59%): Tingkat kesulitan disesuaikan sedikit agar belajar makin nyaman.`;
+  } else {
+    starsDisplay = "⭐";
+    starText = "Mulai Berkembang";
+    currDiffIdx = 0;
+    appState.level = 1;
+    appState.diagnosticLabel = "LEVEL PEMULA";
+    adaptiveNotice = `💛 Performa ${accuracy}%: Yuk kita bermain latihan dasar bersama-sama dengan santai!`;
+  }
+  appState.difficultyCode = diffLadder[currDiffIdx];
+
+  // Check Badges Unlock
+  if (appState.stars >= 15 && !appState.unlockedBadges.includes("🏅 Ahli Warna")) appState.unlockedBadges.push("🏅 Ahli Warna");
+  if (appState.stars >= 30 && !appState.unlockedBadges.includes("🏅 Jago Angka")) appState.unlockedBadges.push("🏅 Jago Angka");
+  if (appState.gamesCompleted >= 3 && !appState.unlockedBadges.includes("🏅 Detektif Bentuk")) appState.unlockedBadges.push("🏅 Detektif Bentuk");
+  if (accuracy >= 90 && !appState.unlockedBadges.includes("🏅 Raja Pola")) appState.unlockedBadges.push("🏅 Raja Pola");
+
+  saveState();
+
+  // Recommendation Engine
+  const sortedSkills = Object.entries(appState.categoryMastery).sort((a,b) => a[1] - b[1]);
+  const recommendedCat = sortedSkills[0][0];
+
+  document.getElementById('appViewport').innerHTML = `
+    <div class="panel-card" style="text-align:center;">
+      <div style="font-size:4rem;">🎉🏆🎉</div>
+      <h1 style="font-size:2.2rem; color:var(--primary);">SELAMAT!</h1>
+      <h2>Kamu menyelesaikan permainan!</h2>
+      <div style="font-size:3.2rem; margin:12px 0;">${starsDisplay}</div>
+      <div style="font-weight:800; font-size:1.2rem; color:var(--secondary);">${starText}</div>
+
+      <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin:20px 0;">
+        <div class="badge-pill">🏆 Skor: ${s.score}</div>
+        <div class="badge-pill">✅ Akurasi: ${accuracy}%</div>
+        <div class="badge-pill">📊 Status: ${appState.diagnosticLabel}</div>
+      </div>
+
+      <div style="background:#EFF6FF; border:3px solid #93C5FD; padding:16px; border-radius:20px; font-weight:800; margin-bottom:18px;">
+        ${adaptiveNotice}
+      </div>
+
+      <div style="background:#FEFCE8; border:3px solid #FDE047; padding:16px; border-radius:20px; font-weight:800; margin-bottom:24px;">
+        💡 Rekomendasi Berikutnya: Yuk berlatih kategori <strong>${recommendedCat.toUpperCase()}</strong> agar kemampuanmu semakin seimbang!
+      </div>
+
+      <div class="selector-group">
+        <button class="btn-icon-top" style="font-size:1.1rem; padding:14px 24px; background:var(--success); box-shadow:0 5px 0 var(--success-dark);" onclick="launchQuizSession('${s.mode}', ${s.total})">➡️ Lanjut Level</button>
+        <button class="btn-icon-top" style="font-size:1.1rem; padding:14px 24px; background:var(--purple); box-shadow:0 5px 0 var(--purple-dark);" onclick="launchQuizSession('${recommendedCat}', 8)">🎯 Latih ${recommendedCat.toUpperCase()}</button>
+        <button class="btn-icon-top" style="font-size:1.1rem; padding:14px 24px;" onclick="navigateHome()">🏠 Menu Utama</button>
+      </div>
+    </div>
+  `;
+  speakText("Selamat! Kamu menyelesaikan permainan dengan hebat!");
+}
+
+/* ============================================================================
+   8. INTERACTIVE MEMORY CARD GAME
+============================================================================ */
+let memState = null;
+
+function launchMemoryGame() {
+  const themeIcons = THEMES_DB[appState.selectedTheme].icons;
+  const pairCount = appState.level === 1 ? 4 : 6;
+  const chosen = themeIcons.slice(0, pairCount);
+  const deck = shuffle([...chosen, ...chosen]).map((icon, idx) => ({ id: idx, icon, flipped: false, matched: false }));
+
+  memState = { deck, firstCard: null, lock: false, matches: 0, totalPairs: pairCount, moves: 0 };
+  renderMemoryBoard();
+  speakText("Buka kartu dan cari pasangan gambar yang sama!");
+}
+
+function renderMemoryBoard() {
+  const m = memState;
+  document.getElementById('appViewport').innerHTML = `
+    <div class="panel-card" style="text-align:center;">
+      <div class="ws-topbar">
+        <div><strong>🃏 MEMORY GAME</strong> • Melatih Daya Ingat & Konsentrasi</div>
+        <div>Pasangan: <strong>${m.matches}/${m.totalPairs}</strong> | Langkah: <strong>${m.moves}</strong></div>
+      </div>
+      <h2 style="margin:14px 0;">Buka kartu dan temukan pasangan yang sama!</h2>
+      <div class="memory-grid" style="grid-template-columns: repeat(${m.totalPairs===4?4:4}, 1fr);">
+        ${m.deck.map((c, i) => `
+          <div class="mem-card ${c.flipped || c.matched ? 'flipped' : ''}" onclick="flipMemoryCard(${i})">
+            ${c.flipped || c.matched ? c.icon : '❓'}
+          </div>
+        `).join('')}
+      </div>
+      <button class="chip-btn" style="margin:auto;" onclick="launchMemoryGame()">🔄 Acak Ulang Kartu</button>
+    </div>
+  `;
+}
+
+function flipMemoryCard(idx) {
+  const m = memState;
+  const card = m.deck[idx];
+  if (m.lock || card.flipped || card.matched) return;
+
+  card.flipped = true;
+  renderMemoryBoard();
+
+  if (!m.firstCard) {
+    m.firstCard = card;
+    return;
+  }
+
+  m.moves += 1;
+  if (m.firstCard.icon === card.icon) {
+    playSound('correct');
+    m.firstCard.matched = true;
+    card.matched = true;
+    m.firstCard = null;
+    m.matches += 1;
+    appState.stars += 2;
+    saveState();
+    renderMemoryBoard();
+
+    if (m.matches === m.totalPairs) {
+      playSound('fanfare');
+      appState.categoryMastery.memory = Math.min(100, appState.categoryMastery.memory + 5);
+      saveState();
+      setTimeout(() => {
+        alert("🎉 HEBAT! Semua pasangan kartu berhasil ditemukan!");
+        navigateHome();
+      }, 400);
+    }
+  } else {
+    playSound('tryagain');
+    m.lock = true;
+    setTimeout(() => {
+      m.firstCard.flipped = false;
+      card.flipped = false;
+      m.firstCard = null;
+      m.lock = false;
+      renderMemoryBoard();
+    }, 800);
+  }
+}
+
+/* ============================================================================
+   9. PRINTABLE A4 WORKSHEET MODE
+============================================================================ */
+function openPrintableWorksheet(category = 'campuran', count = 10) {
+  const pool = ['warna','bentuk','angka','hitung','huruf','pola','urutkan','perbedaan','cocokkan'];
+  const items = Array.from({ length: count }, (_, idx) => {
+    const cat = (category === 'campuran' || category === 'tes') ? pool[idx % pool.length] : category;
+    return generateDynamicQuestion(cat, appState.level, appState.selectedTheme);
+  });
+  const themeObj = THEMES_DB[appState.selectedTheme] || THEMES_DB.buah;
+
+  document.getElementById('appViewport').innerHTML = `
+    <div class="panel-card">
+      <div class="no-print" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:20px;">
+        <button class="chip-btn" onclick="navigateHome()">⬅️ Kembali ke Menu</button>
+        <div style="display:flex; gap:10px;">
+          <button class="chip-btn" onclick="openPrintableWorksheet('${category}', ${count})">🔄 Buat Soal Baru</button>
+          <button class="btn-icon-top" style="background:var(--success); box-shadow:0 4px 0 var(--success-dark); font-size:1rem; padding:10px 20px;" onclick="window.print()">🖨️ Cetak Worksheet (A4 / Simpan PDF)</button>
+        </div>
+      </div>
+
+      <div class="print-container">
+        <div class="print-header-box">
+          <div>
+            <h1 style="font-size:1.6rem;">🌈 WORKSHEET EDUKATIF ANAK USIA 4–5 TAHUN</h1>
+            <p style="font-weight:700;">Tema: ${themeObj.title} | Level ${appState.level} (Tingkat ${appState.difficultyCode}) | Kategori: ${category.toUpperCase()}</p>
+          </div>
+          <div style="font-size:2.6rem;">${themeObj.mascot}</div>
+        </div>
+
+        <div class="print-meta-grid">
+          <div>Nama Anak: ___________________</div>
+          <div>Tanggal: _____________________</div>
+          <div>Nilai / Bintang: ⭐⭐⭐⭐⭐</div>
+        </div>
+
+        ${items.map((q, i) => `
+          <div class="print-question-row">
+            <div style="flex:1; min-width:240px;">
+              <div style="font-weight:800; font-size:1.05rem;">${i + 1}. ${q.prompt}</div>
+              <div style="font-size:1.9rem; margin-top:8px;">${q.visualHtml}</div>
+            </div>
+            <div>
+              ${q.options.map(o => `<span class="print-choice-box">⬜ ${o.icon}</span>`).join('')}
+            </div>
+          </div>
+        `).join('')}
+
+        <div style="margin-top:24px; text-align:center; font-weight:800;">
+          🌟 Paraf Orang Tua / Guru: ______________________ | Catatan Semangat: "Anak Hebat & Rajin Belajar!" 🌟
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/* ============================================================================
+   10. PARENT / TEACHER DASHBOARD & REWARDS VIEW
+============================================================================ */
+function openParentDashboard() {
+  const skills = Object.entries(appState.categoryMastery);
+  const sorted = [...skills].sort((a,b) => b[1] - a[1]);
+  const strongest = sorted[0];
+  const weakest = sorted[sorted.length - 1];
+  const totalAttempts = appState.correctCount + appState.wrongCount;
+  const overallRate = totalAttempts > 0 ? Math.round((appState.correctCount / totalAttempts) * 100) : 85;
+
+  document.getElementById('appViewport').innerHTML = `
+    <div class="panel-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
+        <h2>👨‍👩‍👧 DASHBOARD ORANG TUA & GURU</h2>
+        <button class="chip-btn" onclick="navigateHome()">⬅️ Kembali</button>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-bottom:22px;">
+        <div class="badge-pill" style="justify-content:center;">👶 Nama: ${appState.childName} (${appState.age} Thn)</div>
+        <div class="badge-pill" style="justify-content:center;">🚀 Level Saat Ini: Level ${appState.level} (${appState.difficultyCode})</div>
+        <div class="badge-pill" style="justify-content:center;">🎮 Permainan Selesai: ${appState.gamesCompleted}</div>
+        <div class="badge-pill" style="justify-content:center;">✅ Keberhasilan: ${overallRate}%</div>
+      </div>
+
+      <h3 style="margin-bottom:12px;">📊 PROGRESS BELAJAR ANAK PER KATEGORI</h3>
+      ${skills.map(([k, val]) => `
+        <div class="skill-row">
+          <div class="skill-name">${k.toUpperCase()}</div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" style="width:${val}%">${val}%</div>
+          </div>
+        </div>
+      `).join('')}
+
+      <div style="background:#FFFBEB; border:3px solid #FBBF24; border-radius:20px; padding:18px; margin-top:22px; font-weight:700;">
+        <p>🌟 <strong>Kategori yang Sudah Dikuasai:</strong> ${strongest[0].toUpperCase()} (${strongest[1]}%)</p>
+        <p style="margin-top:6px;">🎯 <strong>Kategori yang Perlu Dilatih:</strong> ${weakest[0].toUpperCase()} (${weakest[1]}%)</p>
+        <p style="margin-top:10px; color:var(--secondary-dark);">💡 <strong>Rekomendasi Sistem:</strong> "Hebat! Ananda sudah sangat baik mengenal ${strongest[0]}. Yuk jadwalkan bermain kategori <strong>${weakest[0]}</strong> selama 5–10 menit hari ini."</p>
+      </div>
+
+      <div class="selector-group" style="margin-top:20px;">
+        <button class="btn-icon-top" style="background:var(--success); padding:12px 22px;" onclick="launchQuizSession('${weakest[0]}', 8)">▶️ Mulai Latihan ${weakest[0].toUpperCase()}</button>
+        <button class="btn-icon-top" style="background:var(--primary); padding:12px 22px;" onclick="resetAllProgress()">🗑️ Reset Data Progress</button>
+      </div>
+    </div>
+  `;
+}
+
+function openRewardsView() {
+  const allBadges = [
+    { title: "🏅 Ahli Warna", desc: "Menguasai permainan warna ceria" },
+    { title: "🏅 Jago Angka", desc: "Mengumpulkan 30+ bintang belajar" },
+    { title: "🏅 Detektif Bentuk", desc: "Menyelesaikan 3+ permainan bentuk" },
+    { title: "🏅 Raja Pola", desc: "Menjawab 90%+ benar tanpa salah" },
+    { title: "🏅 Master Berhitung", desc: "Mahir penjumlahan dengan gambar" },
+    { title: "🏅 Super Memory", desc: "Menyelesaikan permainan kartu ingatan" }
+  ];
+
+  document.getElementById('appViewport').innerHTML = `
+    <div class="panel-card" style="text-align:center;">
+      <h2>🏆 KOLEKSI BINTANG, PIALA & BADGE ANAK</h2>
+      <p style="font-size:1.3rem; font-weight:800; margin:10px 0 20px;">Total Bintang Terkumpul: ⭐ ${appState.stars}</p>
+      <div class="category-grid">
+        ${allBadges.map(b => `
+          <div class="game-tile" style="background:#FFFBEB; border-color:#FBBF24;">
+            <div class="tile-icon">🏅</div>
+            <div class="tile-title">${b.title}</div>
+            <div class="tile-sub">${b.desc}</div>
+          </div>
+        `).join('')}
+      </div>
+      <br/>
+      <button class="chip-btn" style="margin:auto;" onclick="navigateHome()">⬅️ Kembali ke Menu Utama</button>
+    </div>
+  `;
+}
+
+function openSettingsView() {
+  document.getElementById('appViewport').innerHTML = `
+    <div class="panel-card" style="max-width:540px; margin:0 auto;">
+      <h2>⚙️ PENGATURAN PROFIL ANAK</h2>
+      <div style="margin:18px 0;">
+        <label style="font-weight:800; display:block; margin-bottom:8px;">Nama Panggilan Anak:</label>
+        <input type="text" id="inputChildName" value="${appState.childName}" style="width:100%; padding:12px; border-radius:14px; border:3px solid #CBD5E1; font-size:1.1rem; font-weight:700;" />
+      </div>
+      <div style="display:flex; gap:12px;">
+        <button class="btn-icon-top" style="background:var(--success); padding:12px 24px;" onclick="saveChildProfile()">💾 Simpan Profil</button>
+        <button class="chip-btn" onclick="navigateHome()">Batal</button>
+      </div>
+    </div>
+  `;
+}
+
+function saveChildProfile() {
+  const val = document.getElementById('inputChildName').value.trim();
+  if (val) appState.childName = val;
+  saveState();
+  navigateHome();
+}
+
+function resetAllProgress() {
+  if (confirm("Yakin ingin mengatur ulang seluruh bintang dan data laporan anak?")) {
+    localStorage.removeItem('dunia_pintar_ceria_v1');
+    appState = Object.assign({}, defaultState);
+    saveState();
+    openParentDashboard();
+  }
+}
+
+/* ============================================================================
+   11. SLASH COMMAND PARSER (/worksheet, /game, /tes, /report, /random, dll)
+============================================================================ */
+function executeCommand() {
+  const raw = document.getElementById('cmdInputBox').value.trim().toLowerCase();
+  if (!raw) return;
+
+  const tokens = raw.split(/\\s+/);
+  const cmd = tokens[0];
+  const params = {};
+  tokens.slice(1).forEach(t => {
+    const [k, v] = t.split('=');
+    if (k && v) params[k] = v;
+  });
+
+  if (params.usia) selectChildAge(parseFloat(params.usia));
+  if (params.level) appState.level = Math.min(3, Math.max(1, parseInt(params.level)));
+  if (params.tema && THEMES_DB[params.tema]) appState.selectedTheme = params.tema;
+  const count = params.soal ? Math.min(25, Math.max(3, parseInt(params.soal))) : 10;
+  const cat = params.kategori || 'campuran';
+  saveState();
+
+  if (cmd === '/start') navigateHome();
+  else if (cmd === '/tes') launchQuizSession('tes', 10);
+  else if (cmd === '/level' || cmd === '/report') openParentDashboard();
+  else if (cmd === '/reward') openRewardsView();
+  else if (cmd === '/worksheet' || cmd === '/print') openPrintableWorksheet(cat, count);
+  else if (cmd === '/game') launchQuizSession(cat, count);
+  else if (cmd === '/memory') launchMemoryGame();
+  else if (cmd === '/random') launchQuizSession('campuran', count);
+  else if (cmd === '/next') {
+    const sorted = Object.entries(appState.categoryMastery).sort((a,b) => a[1] - b[1]);
+    launchQuizSession(sorted[0][0], count);
+  } else {
+    const directCat = cmd.replace('/', '');
+    const mapAlias = { logika: 'cocokkan', puzzle: 'pola' };
+    launchQuizSession(mapAlias[directCat] || directCat, count);
+  }
+}
+
+// Start App
+navigateHome();
+</script>
+</body>
+</html>
+"""
+
+with open("game_worksheet_edukatif_anak_4_5_tahun.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("File game_worksheet_edukatif_anak_4_5_tahun.html berhasil dibuat.")
